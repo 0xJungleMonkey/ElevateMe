@@ -16,9 +16,11 @@ func init() {
 }
 
 type studentInfo struct {
-	Sid    string
-	Name   string
-	Course string
+	Sid      string
+	Name     string
+	Course   string
+	Username string
+	Password string
 }
 
 func StudentHandler(w http.ResponseWriter, r *http.Request) {
@@ -27,9 +29,11 @@ func StudentHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	student := studentInfo{
-		Sid:    r.FormValue("sid"),
-		Name:   r.FormValue("name"),
-		Course: r.FormValue("course"),
+		Sid:      r.FormValue("sid"),
+		Name:     r.FormValue("name"),
+		Course:   r.FormValue("course"),
+		Username: r.FormValue("username"),
+		Password: r.FormValue("password"),
 	}
 	tmpl.Execute(w, struct {
 		Success bool
@@ -40,6 +44,7 @@ func main() {
 	http.HandleFunc("/", StudentHandler)
 	http.ListenAndServe(":8080", nil)
 }
+
 func Gin() {
 	r := gin.Default()
 	r.GET("/ping", func(c *gin.Context) {
