@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Go form</title>
+</head>
+<body>
+    {{if .Success}}
+    <h1>Welcome with Data</h1>
+    <b>Student ID:</b>{{.Student.Sid}}<b></br>
+    <b>Student Name:</b>{{.Student.Name}}<b></br>
+    <b>Student Course:</b>{{.Student.Course}}<b></br>
+
+
+
+    {{else}}
+    <div id = "container">
+        <h2>Student Information</h2>
+        <form method ="POST" action="/">
+            <label for ="sid">Student ID</label>
+            <input type = "text" name = "sid" ><b></b>
+            <label for ="name">Student Name</label>
+            <input type = "text" name = "name" ><b></b>
+            <label for ="course">Student Course</label>
+            <input type = "text" name = "course"><b></b>
+            <input type="submit" name = "submit" value="Send">
+        </form>
+    </div>
+    {{end}}
+</body>
+</html>
