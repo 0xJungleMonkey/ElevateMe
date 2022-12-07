@@ -41,8 +41,13 @@ func StudentHandler(w http.ResponseWriter, r *http.Request) {
 	}{true, student})
 }
 func main() {
-	http.HandleFunc("/", StudentHandler)
-	http.ListenAndServe(":8080", nil)
+	mux := http.NewServeMux()
+	fs := http.FileServer(http.Dir("assets"))
+
+	mux.Handle("/assets/", http.StripPrefix("/assets/", fs))
+	// mux.HandleFunc("/", indexHandler)
+	mux.HandleFunc("/", StudentHandler)
+	http.ListenAndServe(":8080", mux)
 }
 
 func Gin() {
