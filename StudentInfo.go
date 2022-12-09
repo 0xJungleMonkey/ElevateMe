@@ -11,34 +11,31 @@ var tmpl *template.Template
 
 // reading the HTML files
 func init() {
-	tmpl = template.Must(template.ParseFiles("StudentInfo.html"))
+	tmpl = template.Must(template.ParseFiles("login.html"))
 
 }
 
-type studentInfo struct {
-	Sid      string
-	Name     string
-	Course   string
+// customer login credential
+type credentialInfo struct {
 	Username string
 	Password string
 }
 
+// Collect input info and show on html
 func StudentHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
 		tmpl.Execute(w, nil)
 		return
 	}
-	student := studentInfo{
-		Sid:      r.FormValue("sid"),
-		Name:     r.FormValue("name"),
-		Course:   r.FormValue("course"),
+	log_in := credentialInfo{
+
 		Username: r.FormValue("username"),
 		Password: r.FormValue("password"),
 	}
 	tmpl.Execute(w, struct {
 		Success bool
-		Student studentInfo
-	}{true, student})
+		Log_in  credentialInfo
+	}{true, log_in})
 }
 func main() {
 	mux := http.NewServeMux()
