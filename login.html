@@ -1243,6 +1243,7 @@
 
 			<!-- -->
 			<section>
+				{{.Message}}
                 {{if .Success}}
                 <h1>Welcome with Data</h1>
                 
@@ -1327,7 +1328,7 @@
 											<strong>Oh snap!</strong> Password do not match!
 										</div><!-- /ALERT -->
 
-										<form class="m-0 sky-form" action="#" method="post" enctype="multipart/form-data">
+										<form class="m-0 sky-form" action="/signup" method="post" enctype="multipart/form-data">
 											<fieldset>
 
 												<div class="row">
@@ -1358,7 +1359,7 @@
 														<label for="register:email">Email *</label>
 														<label class="input mb-10">
 															<i class="ico-append fa fa-envelope"></i>
-															<input required="" type="text">
+															<input required="" type="text" name = "new_username">
 															<b class="tooltip tooltip-bottom-right">Your Email</b>
 														</label>
 													</div>
@@ -1380,7 +1381,7 @@
 														<label for="register:pass1">Password *</label>
 														<label class="input mb-10">
 															<i class="ico-append fa fa-lock"></i>
-															<input required="" type="password" class="err">
+															<input required="" type="password" class="err" name="new_password">
 															<b class="tooltip tooltip-bottom-right">Min. 6 characters</b>
 														</label>
 													</div>
